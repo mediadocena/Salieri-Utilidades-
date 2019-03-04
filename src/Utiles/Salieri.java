@@ -14,6 +14,62 @@ public class Salieri {
 	public Salieri(){
 
 	}
+	public String controlaNIF() {
+		boolean válido=false;
+		String nif =teclado.next();
+		do {
+		
+		char letra = 'a';
+		válido=false;
+		char esdigito='a';
+		//Controlamos la cantidad de digitos:
+		if (nif.length()==9) {
+			letra = nif.charAt(8); //Posición de la letra
+		
+		//Determinamos si el ultimo digito es una letra
+		if(Character.isAlphabetic(letra)==true) {
+			válido = true;
+			//Determinamos si el resto de digitos son números
+			for (int i = 0; i < 8; i++) {
+				esdigito=nif.charAt(i);
+				if(Character.isDigit(esdigito)==false) {
+					válido=false;
+					System.out.println("NIF no válido");
+				}else {válido=true;}
+			}
+		}else {
+			System.out.println("NIF no válido, introduzca un nif válido:");
+			nif=teclado.next(); 
+			válido=false;
+			}
+			
+		}
+		}while(válido==false);
+	return nif;
+	}
+	
+	/**
+	 * Muestra un mensaje en pantalla y lee un numero entero por teclado  controlando las exepciones.
+	 * @return Retorna el numero entero
+	 */
+	public int controlaenteroSt(String h){
+		System.out.println(h);
+		 boolean exc = true;
+		 int a=0;
+		 
+	
+		 
+		 do {
+			try {
+			a=teclado.nextInt();
+			exc = false;
+				}catch(Exception e){
+					teclado.nextLine();
+					System.out.println("ERROR, introduzca un nï¿½mero");
+					}
+				}while(exc);
+		 return a;
+	}
 	/**
 	 * Lee un numero entero por teclado y controla las exepciones
 	 * @return Retorna el numero entero
@@ -36,6 +92,29 @@ public class Salieri {
 				}while(exc);
 		 return a;
 	}
+	/**
+	 * Muestra un mensaje en pantalla y lee un String por teclado  controlando las exepciones.
+	 * @return Retorna el String
+	 */
+	public String controlaStringSt(String h){
+		System.out.println(h);
+		 boolean exc = true;
+		 String a="";
+		 do {
+			try {
+			a=teclado.next();
+			exc = false;
+				}catch(Exception e){
+					teclado.nextLine();
+					System.out.println("ERROR, introduzca un caracter");
+					}
+				}while(exc);
+		 return a;
+	}
+	/**
+	 * Lee un numero entero por teclado  controlando las exepciones.
+	 * @return Retorna el String
+	 */
 	public String controlaString(){
 		 boolean exc = true;
 		 String a="";
