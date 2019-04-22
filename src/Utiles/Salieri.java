@@ -15,36 +15,36 @@ public class Salieri {
 
 	}
 	public String controlaNIF() {
-		boolean válido=false;
+		boolean vÃ¡lido=false;
 		String nif =teclado.next();
 		do {
 		
 		char letra = 'a';
-		válido=false;
+		vÃ¡lido=false;
 		char esdigito='a';
 		//Controlamos la cantidad de digitos:
 		if (nif.length()==9) {
-			letra = nif.charAt(8); //Posición de la letra
+			letra = nif.charAt(8); //PosiciÃ³n de la letra
 		
 		//Determinamos si el ultimo digito es una letra
 		if(Character.isAlphabetic(letra)==true) {
-			válido = true;
-			//Determinamos si el resto de digitos son números
+			vÃ¡lido = true;
+			//Determinamos si el resto de digitos son nÃºmeros
 			for (int i = 0; i < 8; i++) {
 				esdigito=nif.charAt(i);
 				if(Character.isDigit(esdigito)==false) {
-					válido=false;
-					System.out.println("NIF no válido");
-				}else {válido=true;}
+					vÃ¡lido=false;
+					System.out.println("NIF no vÃ¡lido");
+				}else {vÃ¡lido=true;}
 			}
 		}else {
-			System.out.println("NIF no válido, introduzca un nif válido:");
+			System.out.println("NIF no vÃ¡lido, introduzca un nif vÃ¡lido:");
 			nif=teclado.next(); 
-			válido=false;
+			vÃ¡lido=false;
 			}
 			
 		}
-		}while(válido==false);
+		}while(vÃ¡lido==false);
 	return nif;
 	}
 	
@@ -65,7 +65,7 @@ public class Salieri {
 			exc = false;
 				}catch(Exception e){
 					teclado.nextLine();
-					System.out.println("ERROR, introduzca un nï¿½mero");
+					System.out.println("ERROR, introduzca un nÃ¯Â¿Â½mero");
 					}
 				}while(exc);
 		 return a;
@@ -87,7 +87,7 @@ public class Salieri {
 			exc = false;
 				}catch(Exception e){
 					teclado.nextLine();
-					System.out.println("ERROR, introduzca un nï¿½mero");
+					System.out.println("ERROR, introduzca un nÃ¯Â¿Â½mero");
 					}
 				}while(exc);
 		 return a;
@@ -142,7 +142,7 @@ public class Salieri {
 			exc = false;
 				}catch(Exception e){
 					teclado.nextLine();
-					System.out.println("ERROR, introduzca un nï¿½mero");
+					System.out.println("ERROR, introduzca un nÃ¯Â¿Â½mero");
 					}
 				}while(exc);
 		 return a;
@@ -161,12 +161,12 @@ public class Salieri {
 			if(a>=0) {
 				exc=false;
 			}else{
-				System.out.println("Error, introduzca un nï¿½mero positivo");
+				System.out.println("Error, introduzca un nÃ¯Â¿Â½mero positivo");
 				exc=true;
 			}
 				}catch(Exception e){
 					teclado.nextLine();
-					System.out.println("ERROR, introduzca un nï¿½mero entero positivo");
+					System.out.println("ERROR, introduzca un nÃ¯Â¿Â½mero entero positivo");
 					}
 				}while(exc);
 		 return a;
@@ -247,9 +247,9 @@ public class Salieri {
 	}
 	/**
 	 * Diversas utilidades para operar con arrays unidimensionales
-	 * @param vector Acepta como parámetro un array de enteros
-	 * @param opcion Acepta como parámetro un número entero:
-	 * 				1_Rellena un array con números aleatorios entre 10 y 100.
+	 * @param vector Acepta como parÃ¡metro un array de enteros
+	 * @param opcion Acepta como parÃ¡metro un nÃºmero entero:
+	 * 				1_Rellena un array con nÃºmeros aleatorios entre 10 y 100.
 	 * 				2_Muestra en pantalla el contenido de un vector de numeros enteros.
 	 * 				3_Muestra en pantalla el contenido de un vector invertido.
 	 * 				4_Suma el contenido del array y lo muestra en pantalla.
@@ -393,7 +393,7 @@ public class Salieri {
 	     }
 	 }
 	 /**
-	  * Metodo para rellenar un arraylist con numeros aleatorios, controlando los parámetros
+	  * Metodo para rellenar un arraylist con numeros aleatorios, controlando los parÃ¡metros
 	  * @param longitud longitud del arraylist a llenar
 	  * @param num numero limite para generar numeros
 	  * @param t arraylist a llenar
@@ -419,17 +419,17 @@ public class Salieri {
 	  */
 	 public void llenarListIntTeclado(List<Integer> t,int longitud) {
 		 for (int i = 0; i < longitud; i++) {
-			 System.out.println("Introduzca un número para la posición:"+" "+i);
+			 System.out.println("Introduzca un nÃºmero para la posiciÃ³n:"+" "+i);
 			 t.add(controlaentero());
 		}
 	 }
 	 /**
-	  * Método para generar automáticamente un DNI válido
+	  * MÃ©todo para generar automÃ¡ticamente un DNI vÃ¡lido
 	  * @return Devuelve un String con el dni.
 	  */
 	 public String Dni() {
 		 String Dni[]= new String[9];
-		 String letra="ABCDEFGHIJKLMNÑOPQRSTUVWYZ";
+		 String letra="ABCDEFGHIJKLMNÃ‘OPQRSTUVWYZ";
 		 for(int i=0;i<=8;i++) {
 			 int numero= (int)(Math.random()*9+1);
 			 int let= (int)(Math.random()*25+1);
@@ -448,4 +448,30 @@ public class Salieri {
 		 letra=(letra.replace(" ", ""));
 		 return letra ;
 	 }
+	/**
+	*Metodo para escribir en un archivo (W.I.P)
+	*@param ruta String con la ruta de el archivo.
+	*/
+	public void EscribeArchivo(String ruta){
+	FileWriter fichero = null;
+        PrintWriter pw = null;
+		
+        try{
+            fichero = new FileWriter(ruta);
+            pw = new PrintWriter(fichero);
+
+            for (int i = 0; i < 10; i++)
+                pw.println("Linea " + i);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+           try {
+           if (null != fichero)
+              fichero.close();
+           } catch (Exception e2) {
+              e2.printStackTrace();
+           }
+        }
+	}
  }
