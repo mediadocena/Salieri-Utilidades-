@@ -1,4 +1,11 @@
 package Utiles;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -15,12 +22,12 @@ public class Salieri {
 
 	}
 	public String controlaNIF() {
-		boolean válido=false;
+		boolean valido=false;
 		String nif =teclado.next();
 		do {
 		
 		char letra = 'a';
-		válido=false;
+		valido=false;
 		char esdigito='a';
 		//Controlamos la cantidad de digitos:
 		if (nif.length()==9) {
@@ -28,23 +35,23 @@ public class Salieri {
 		
 		//Determinamos si el ultimo digito es una letra
 		if(Character.isAlphabetic(letra)==true) {
-			válido = true;
+			valido = true;
 			//Determinamos si el resto de digitos son números
 			for (int i = 0; i < 8; i++) {
 				esdigito=nif.charAt(i);
 				if(Character.isDigit(esdigito)==false) {
-					válido=false;
+					valido=false;
 					System.out.println("NIF no válido");
-				}else {válido=true;}
+				}else {valido=true;}
 			}
 		}else {
 			System.out.println("NIF no válido, introduzca un nif válido:");
 			nif=teclado.next(); 
-			válido=false;
+			valido=false;
 			}
 			
 		}
-		}while(válido==false);
+		}while(valido==false);
 	return nif;
 	}
 	
@@ -453,7 +460,8 @@ public class Salieri {
 	*@param ruta String con la ruta de el archivo.
 	*/
 	public void EscribeArchivo(String ruta){
-	FileWriter fichero = null;
+		File archivo = new File(ruta);
+		FileWriter fichero = null;
         PrintWriter pw = null;
 		
         try{
@@ -473,5 +481,34 @@ public class Salieri {
               e2.printStackTrace();
            }
         }
+	}
+	public void LeeArchivo(String ruta){
+		File archivo = new File(ruta);
+		FileReader fr = null;
+		BufferedReader br = null;
+		try {
+			fr = new FileReader(archivo);
+			br = new BufferedReader(fr);
+			String linea ;
+			while((linea=br.readLine())!=null)
+				System.out.println(linea);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+	         // En el finally cerramos el fichero, para asegurarnos
+	         // que se cierra tanto si todo va bien como si salta 
+	         // una excepcion.
+	         try{                    
+	            if( null != fr ){   
+	               fr.close();     
+	            }                  
+	         }catch (Exception e2){ 
+	            e2.printStackTrace();
+	         }
+	      }
 	}
  }
